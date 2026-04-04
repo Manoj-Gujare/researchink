@@ -48,7 +48,7 @@ Return ONLY valid JSON matching this exact schema (no markdown fences, no extra 
       "content": "<string, 3-5 paragraphs>",
       "generate_image": <true|false>,
       "key_insight": "<string, bold callout line>",
-      "sources": ["<web URL or arxiv paper title>"]
+      "sources": ["<full URL — use the web URL or the arxiv entry_id URL, never a plain title>"]
     }}
   ],
   "key_takeaways": ["<string>"],
@@ -69,7 +69,7 @@ Rules:
 - Include 4-6 sections with substantive content.
 - Set generate_image=true for the 2 most visually compelling sections only.
 - reading_time = ceil(total_word_count / 200) formatted as "N min read".
-- All sources must come from the research provided above.
+- All sources must be full URLs taken directly from the research provided above (web urls or arxiv entry_id urls). Never use plain titles as sources.
 - NEVER use em dashes (—) anywhere. Use a comma, colon, or rewrite the sentence.
 - Do NOT wrap key_insight values in quotation marks. Write them as plain declarative statements.
 - Use plain ASCII punctuation only: hyphens (-), not en/em dashes.

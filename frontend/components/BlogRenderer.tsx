@@ -68,9 +68,27 @@ export default function BlogRenderer({ blog }: { blog: BlogPost }) {
           </blockquote>
 
           {section.sources.length > 0 && (
-            <p className="mt-3 text-xs text-gray-400">
-              Sources: {section.sources.join(" · ")}
-            </p>
+            <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1">
+              <span className="text-xs text-gray-400">Sources:</span>
+              {section.sources.map((src, j) => {
+                const isUrl = src.startsWith("http");
+                return isUrl ? (
+                  <a
+                    key={j}
+                    href={src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-blue-600 hover:underline"
+                  >
+                    [{j + 1}]
+                  </a>
+                ) : (
+                  <span key={j} className="text-xs text-gray-400">
+                    [{j + 1}] {src}
+                  </span>
+                );
+              })}
+            </div>
           )}
         </section>
       ))}
