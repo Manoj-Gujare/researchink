@@ -70,6 +70,9 @@ Rules:
 - Set generate_image=true for the 2 most visually compelling sections only.
 - reading_time = ceil(total_word_count / 200) formatted as "N min read".
 - All sources must come from the research provided above.
+- NEVER use em dashes (—) anywhere. Use a comma, colon, or rewrite the sentence.
+- Do NOT wrap key_insight values in quotation marks. Write them as plain declarative statements.
+- Use plain ASCII punctuation only: hyphens (-), not en/em dashes.
 - Return pure JSON only."""
 
 
