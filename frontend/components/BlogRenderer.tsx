@@ -1,5 +1,9 @@
 import type { BlogPost } from "@/types/blog";
 
+function clean(text: string): string {
+  return text.replace(/\u2014/g, " - ").replace(/\u2013/g, "-");
+}
+
 export default function BlogRenderer({ blog }: { blog: BlogPost }) {
   return (
     <article className="max-w-3xl mx-auto px-4 py-12">
@@ -25,18 +29,18 @@ export default function BlogRenderer({ blog }: { blog: BlogPost }) {
           ))}
         </div>
         <h1 className="text-4xl font-bold leading-tight text-gray-900 mb-3">
-          {blog.title}
+          {clean(blog.title)}
         </h1>
-        <p className="text-xl text-gray-500">{blog.subtitle}</p>
+        <p className="text-xl text-gray-500">{clean(blog.subtitle)}</p>
       </header>
 
       {/* Intro */}
       <section className="mb-12 border-l-4 border-gray-900 pl-5">
         <p className="text-lg font-semibold text-gray-900 mb-3 leading-snug">
-          {blog.intro.hook}
+          {clean(blog.intro.hook)}
         </p>
-        <p className="text-gray-700 mb-3">{blog.intro.context}</p>
-        <p className="text-gray-500 italic">{blog.intro.what_you_will_learn}</p>
+        <p className="text-gray-700 mb-3">{clean(blog.intro.context)}</p>
+        <p className="text-gray-500 italic">{clean(blog.intro.what_you_will_learn)}</p>
       </section>
 
       {/* Sections */}
@@ -55,12 +59,12 @@ export default function BlogRenderer({ blog }: { blog: BlogPost }) {
           )}
 
           <div className="text-gray-700 leading-relaxed whitespace-pre-line mb-6">
-            {section.content}
+            {clean(section.content)}
           </div>
 
           {/* Key insight callout */}
           <blockquote className="border-l-4 border-gray-900 pl-4 py-2 bg-gray-50 rounded-r-xl">
-            <p className="font-semibold text-gray-900">{section.key_insight}</p>
+            <p className="font-semibold text-gray-900">{clean(section.key_insight)}</p>
           </blockquote>
 
           {section.sources.length > 0 && (
@@ -87,8 +91,8 @@ export default function BlogRenderer({ blog }: { blog: BlogPost }) {
       {/* Conclusion */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Conclusion</h2>
-        <p className="text-gray-700 mb-3">{blog.conclusion.summary}</p>
-        <p className="text-gray-500 italic">{blog.conclusion.forward_look}</p>
+        <p className="text-gray-700 mb-3">{clean(blog.conclusion.summary)}</p>
+        <p className="text-gray-500 italic">{clean(blog.conclusion.forward_look)}</p>
       </section>
 
       {/* References */}
