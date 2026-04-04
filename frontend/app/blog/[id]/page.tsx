@@ -1,4 +1,5 @@
 import BlogRenderer from "@/components/BlogRenderer";
+import DownloadButton from "@/components/DownloadButton";
 import Link from "next/link";
 
 async function getBlog(id: string) {
@@ -35,7 +36,10 @@ export default async function BlogPage({
           <Link href="/" className="font-bold tracking-tight text-gray-900">
             🖊️ ResearchInk
           </Link>
-          <span className="text-sm text-gray-400">{data.blog.reading_time}</span>
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-gray-400">{data.blog.reading_time}</span>
+            <DownloadButton blog={data.blog} />
+          </div>
         </div>
       </nav>
       <BlogRenderer blog={data.blog} />
