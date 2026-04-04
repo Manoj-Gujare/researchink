@@ -20,10 +20,13 @@ export default async function BlogPage({
 
   if (!data) {
     return (
-      <main className="min-h-screen flex flex-col items-center justify-center gap-4">
-        <p className="text-lg text-gray-600">Blog post not found.</p>
-        <Link href="/" className="text-sm underline text-gray-500 hover:text-gray-900">
-          ← Back to home
+      <main className="min-h-screen flex flex-col items-center justify-center gap-4 bg-[#fafaf9]">
+        <p className="text-lg text-stone-600">Blog post not found.</p>
+        <Link
+          href="/"
+          className="text-sm text-stone-500 hover:text-slate-900 underline underline-offset-4"
+        >
+          Back to home
         </Link>
       </main>
     );
@@ -31,13 +34,18 @@ export default async function BlogPage({
 
   return (
     <>
-      <nav className="sticky top-0 z-10 bg-white/80 backdrop-blur border-b border-gray-100 px-4 py-3">
-        <div className="max-w-3xl mx-auto flex items-center justify-between">
-          <Link href="/" className="font-bold tracking-tight text-gray-900">
-            🖊️ ResearchInk
+      <nav className="sticky top-0 z-10 bg-[#fafaf9]/80 backdrop-blur border-b border-stone-200 px-4 py-3">
+        <div className="max-w-2xl mx-auto flex items-center justify-between">
+          <Link
+            href="/"
+            className="text-sm font-semibold text-slate-900 hover:text-indigo-600 transition-colors"
+          >
+            ← ResearchInk
           </Link>
           <div className="flex items-center gap-4">
-            <span className="text-sm text-gray-400">{data.blog.reading_time}</span>
+            <span className="text-xs text-stone-400 font-mono">
+              {data.blog.reading_time}
+            </span>
             <DownloadButton blog={data.blog} />
           </div>
         </div>
