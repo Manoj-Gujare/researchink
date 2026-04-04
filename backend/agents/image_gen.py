@@ -4,7 +4,6 @@ Strictly capped at 3 images per blog: 1 hero + up to 2 section images.
 All images returned as base64-encoded PNG strings.
 """
 
-import base64
 import json
 import os
 from typing import Any
