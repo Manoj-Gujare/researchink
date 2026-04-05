@@ -9,6 +9,13 @@ import os
 from typing import Any
 
 import boto3
+from botocore.config import Config
+
+_BEDROCK_CONFIG = Config(
+    connect_timeout=10,
+    read_timeout=120,  # Titan image generation can take up to ~60s per image
+    retries={"max_attempts": 2, "mode": "standard"},
+)
 
 MAX_IMAGES = 3
 MAX_SECTION_IMAGES = 2
@@ -46,6 +53,7 @@ async def generate_images(blog: dict[str, Any]) -> dict[str, Any]:
         region_name=os.environ["AWS_REGION"],
         aws_access_key_id=os.environ["AWS_ACCESS_KEY_ID"],
         aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
+        config=_BEDROCK_CONFIG,
     )
 
     image_budget = MAX_IMAGES  # starts at 3
