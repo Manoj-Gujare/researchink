@@ -9,6 +9,13 @@ import os
 from typing import Any
 
 import boto3
+from botocore.config import Config
+
+_BEDROCK_CONFIG = Config(
+    connect_timeout=10,
+    read_timeout=300,  # Claude can take 2-4 min for a full blog post
+    retries={"max_attempts": 2, "mode": "standard"},
+)
 
 
 def _build_prompt(topic: str, research: dict[str, Any]) -> str:
@@ -98,6 +105,7 @@ async def generate_blog(topic: str, research: dict[str, Any]) -> dict[str, Any]:
         region_name=os.environ["AWS_REGION"],
         aws_access_key_id=os.environ["AWS_ACCESS_KEY_ID"],
         aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
+        config=_BEDROCK_CONFIG,
     )
 
     prompt = _build_prompt(topic, research)

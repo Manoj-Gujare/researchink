@@ -12,7 +12,12 @@ from models.schemas import BlogRequest, BlogResponse, BlogPost
 
 load_dotenv()
 
-app = FastAPI(title="ResearchInk API", version="1.0.0")
+app = FastAPI(
+    title="ResearchInk API",
+    version="1.0.0",
+    # Full pipeline (research + Claude + 3 Titan images) can take 3-5 min
+    # Set a generous timeout hint for tooling; actual enforcement is in uvicorn CLI
+)
 
 app.add_middleware(
     CORSMiddleware,
